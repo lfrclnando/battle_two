@@ -2,42 +2,39 @@ import random
 class Character:
   """ Character construct class """
   def __init__(self, name, age, height, weight, life, level) -> None:
-    self._name = name
-    self._age = age
-    self._height = height
-    self._weight = weight
-    self._life = life
-    self._level = level
+    self.__name = name
+    self.__age = age
+    self.__height = height
+    self.__weight = weight
+    self.__life = life
+    self.__level = level
 
   def get_name(self):
-    return self._name
+    return self.__name
   
   def get_age(self):
-    return self._age
+    return self.__age
   
   def get_height(self):
-    return self._height
+    return self.__height
   
   def get_weight(self):
-    return self._weight
+    return self.__weight
   
   def get_life(self):
-    return self._life
+    return self.__life
   
   def get_level(self):
-    return self._level
+    return self.__level
   
   def show_details(self):
-    return f"Nome: {self.get_name}\nIdade: {self.get_age}\nAltura: {self.get_height}\nPeso: {self.get_weight}\nVida: {self.get_life}\nNível: {self.get_level}"
+    return f"Nome: {self.get_name()}\nIdade: {self.get_age()}\nAltura: {self.get_height}\nPeso: {self.get_weight()}\nVida: {self.get_life()}\nNível: {self.get_level()}"
   
   def receive_attack(self, damage):
     """ Receive attack method """
     self._life -= damage
-    if self._life < 0:
-      self._life = 0
-    #   print(f"{self.get_name()} morreu!!!")
-    # else:
-    #   print(f"{self.get_name()} sofreu {damage} de dano, restam {self.get_life()} de vida")
+    if self.__life < 0:
+      self.__life = 0
 
   def attack(self, target):
     """ Attack method """
@@ -49,9 +46,9 @@ class Hero(Character):
   """ Hero class """
   def __init__(self, name, age, height, weight, life, level, special_ability) -> None:
     super().__init__(name, age, height, weight, life, level)
-    self._special_ability = special_ability
+    self.__special_ability = special_ability
   def get_special_ability(self):
-    return self._special_ability
+    return self.__special_ability
   def show_details(self):
     return super().show_details() + f"\nHabilidade Especial: {self.get_special_ability}\n"
   
@@ -65,10 +62,10 @@ class Enemy(Character):
   """ Enemy class """
   def __init__ (self, name, age, height, weight, life, level, enemy_type) -> None:
     super().__init__(name, age, height, weight, life, level)
-    self._enemy_type = enemy_type
+    self.__enemy_type = enemy_type
   
   def get_enemy_type(self):
-    return self._enemy_type
+    return self.__enemy_type
   
   def show_details(self):
     return super().show_details() + f"\nTipo do Inimigo: {self.get_enemy_type}\n"
@@ -103,3 +100,7 @@ class Game:
       print(f"\n{self.hero.get_name()} venceu a batalha!!!🎉 Parabéns🎆🎆")
     else:
       print(f"\n{self.enemy.get_name()} venceu a batalha!!! E você Perdeu 😿")
+
+# Create game instance and start battle
+game = Game()
+game.start()
