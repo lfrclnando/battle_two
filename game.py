@@ -1,3 +1,4 @@
+import random
 class Character:
   """ Character construct class """
   def __init__(self, name, age, height, weight, life, level) -> None:
@@ -40,4 +41,10 @@ class Character:
 
     def show_details(self):
       return super().show_details() + f"\nHabilidade Especial: {self.get_special_ability}\n"
+    
+    def spacial_attack(self, target):
+      """ Special attack method """
+      damage = random.randint(self.get_level() * 7, self.get_level() * 15)
+      target.receive_attack(damage)
+      print(f"{self.get_name()} atacou o {target.get_name()} com a habilidade especial {self.get_special_ability()} e causou {damage} de dano!!!")
 
