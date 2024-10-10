@@ -63,3 +63,16 @@ class Character:
       target.receive_attack(damage)
       print(f"{self.get_name()} atacou o {target.get_name()} com a habilidade especial {self.get_special_ability()} e causou {damage} de dano!!!")
 
+  class Enemy(Character):
+    """ Enemy class """
+    def __init__ (self, name, age, height, weight, life, level, enemy_type) -> None:
+      super().__init__(name, age, height, weight, life, level)
+      self._enemy_type = enemy_type
+    
+    def get_enemy_type(self):
+      return self._enemy_type
+    
+    def show_details(self):
+      return super().show_details() + f"\nTipo do Inimigo: {self.get_enemy_type}\n"
+
+
