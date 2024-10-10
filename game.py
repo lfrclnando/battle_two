@@ -45,34 +45,34 @@ class Character:
       target.receive_attack(damage)
       print(f"{self.get_name()} atacou o {target.get_name()} e causou {damage} de dano...")
   
-  class Hero(Character):
-    """ Hero class """
-    def __init__(self, name, age, height, weight, life, level, special_ability) -> None:
-      super().__init__(name, age, height, weight, life, level)
-      self._special_ability = special_ability
+class Hero(Character):
+  """ Hero class """
+  def __init__(self, name, age, height, weight, life, level, special_ability) -> None:
+    super().__init__(name, age, height, weight, life, level)
+    self._special_ability = special_ability
+  def get_special_ability(self):
+    return self._special_ability
+  def show_details(self):
+    return super().show_details() + f"\nHabilidade Especial: {self.get_special_ability}\n"
+  
+  def spacial_attack(self, target):
+    """ Special attack method """
+    damage = random.randint(self.get_level() * 7, self.get_level() * 15)
+    target.receive_attack(damage)
+    print(f"{self.get_name()} atacou o {target.get_name()} com a habilidade especial {self.get_special_ability()} e causou {damage} de dano!!!")
 
-    def get_special_ability(self):
-      return self._special_ability
-
-    def show_details(self):
-      return super().show_details() + f"\nHabilidade Especial: {self.get_special_ability}\n"
+class Enemy(Character):
+  """ Enemy class """
+  def __init__ (self, name, age, height, weight, life, level, enemy_type) -> None:
+    super().__init__(name, age, height, weight, life, level)
+    self._enemy_type = enemy_type
+  
+  def get_enemy_type(self):
+    return self._enemy_type
+  
+  def show_details(self):
+    return super().show_details() + f"\nTipo do Inimigo: {self.get_enemy_type}\n"
     
-    def spacial_attack(self, target):
-      """ Special attack method """
-      damage = random.randint(self.get_level() * 7, self.get_level() * 15)
-      target.receive_attack(damage)
-      print(f"{self.get_name()} atacou o {target.get_name()} com a habilidade especial {self.get_special_ability()} e causou {damage} de dano!!!")
-
-  class Enemy(Character):
-    """ Enemy class """
-    def __init__ (self, name, age, height, weight, life, level, enemy_type) -> None:
-      super().__init__(name, age, height, weight, life, level)
-      self._enemy_type = enemy_type
-    
-    def get_enemy_type(self):
-      return self._enemy_type
-    
-    def show_details(self):
-      return super().show_details() + f"\nTipo do Inimigo: {self.get_enemy_type}\n"
+  
 
 
