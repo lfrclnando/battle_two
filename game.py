@@ -1,6 +1,7 @@
 import random
 class Character:
   """ Character construct class """
+
   def __init__(self, name, age, height, weight, life, level) -> None:
     self.__name = name
     self.__age = age
@@ -28,11 +29,11 @@ class Character:
     return self.__level
   
   def show_details(self):
-    return f"Nome: {self.get_name()}\nIdade: {self.get_age()}\nAltura: {self.get_height}\nPeso: {self.get_weight()}\nVida: {self.get_life()}\nNível: {self.get_level()}"
+    return f"Nome: {self.get_name()}\nIdade: {self.get_age()}\nAltura: {self.get_height()}\nPeso: {self.get_weight()}\nVida: {self.get_life()}\nNível: {self.get_level()}"
   
   def receive_attack(self, damage):
     """ Receive attack method """
-    self._life -= damage
+    self.__life -= damage
     if self.__life < 0:
       self.__life = 0
 
@@ -44,13 +45,16 @@ class Character:
   
 class Hero(Character):
   """ Hero class """
+
   def __init__(self, name, age, height, weight, life, level, special_ability) -> None:
     super().__init__(name, age, height, weight, life, level)
     self.__special_ability = special_ability
+
   def get_special_ability(self):
     return self.__special_ability
+
   def show_details(self):
-    return super().show_details() + f"\nHabilidade Especial: {self.get_special_ability}\n"
+    return super().show_details() + f"\nHabilidade Especial: {self.get_special_ability()}\n"
   
   def spacial_attack(self, target):
     """ Special attack method """
@@ -60,6 +64,7 @@ class Hero(Character):
 
 class Enemy(Character):
   """ Enemy class """
+
   def __init__ (self, name, age, height, weight, life, level, enemy_type) -> None:
     super().__init__(name, age, height, weight, life, level)
     self.__enemy_type = enemy_type
@@ -68,12 +73,13 @@ class Enemy(Character):
     return self.__enemy_type
   
   def show_details(self):
-    return super().show_details() + f"\nTipo do Inimigo: {self.get_enemy_type}\n"
+    return super().show_details() + f"\nTipo do Inimigo: {self.get_enemy_type()}\n"
   
 class Game:
   """ The game's orchestrator class """
+
   def __init__(self) -> None:
-    self.hero = Hero(name="Cavaleiro", age=30, height=90.0, weight=1.80, life=250, level=15, special_ability="Super Força")
+    self.hero = Hero(name="Cavaleiro da Luz", age=30, height=1.80, weight=90, life=300, level=15, special_ability="Super Força")
     self.enemy = Enemy(name="Dragão de Lava", age=300, height=250, weight=13000, life=500, level=20, enemy_type="Voador")
     
   def start(self):
@@ -86,6 +92,7 @@ class Game:
 
       input("\nPressione Enter para iniciar a batalha...")
       choose = input("Escolha (1 - Atacar ou 2 - Ataque Especial): ")
+
       if choose == "1":
         self.hero.attack(self.enemy)
       elif choose == "2":
