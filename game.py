@@ -30,6 +30,21 @@ class Character:
   def show_details(self):
    return f"Nome: {self.get_name}\nIdade: {self.get_age}\nAltura: {self.get_height}\nPeso: {self.get_weight}\nVida: {self.get_life}\nNível: {self.get_level}"
   
+  def receive_attack(self, damage):
+    """ Receive attack method """
+    self._life -= damage
+    if self._life < 0:
+      self._life = 0
+    #   print(f"{self.get_name()} morreu!!!")
+    # else:
+    #   print(f"{self.get_name()} sofreu {damage} de dano, restam {self.get_life()} de vida")
+
+    def attack(self, target):
+      """ Attack method """
+      damage = random.randint(self.get_level() * 4, self.get_level() * 8)
+      target.receive_attack(damage)
+      print(f"{self.get_name()} atacou o {target.get_name()} e causou {damage} de dano...")
+  
   class Hero(Character):
     """ Hero class """
     def __init__(self, name, age, height, weight, life, level, special_ability) -> None:
