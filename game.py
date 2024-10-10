@@ -4,9 +4,9 @@ class Character:
     self._name = name
     self._age = age
     self._height = height
-    self.weight = weight
-    self.life = life
-    self.level = level
+    self._weight = weight
+    self._life = life
+    self._level = level
 
   def get_name(self):
     return self._name
@@ -18,15 +18,26 @@ class Character:
     return self._height
   
   def get_weight(self):
-    return self.weight
+    return self._weight
   
   def get_life(self):
-    return self.life
+    return self._life
   
   def get_level(self):
-    return self.level
+    return self._level
   
   def show_details(self):
-   return f"Nome: {self._name}\nIdade: {self._age}\nAltura: {self._height}\nPeso: {self.weight}\nVida: {self.life}\nNível: {self.level}"
+   return f"Nome: {self.get_name}\nIdade: {self.get_age}\nAltura: {self.get_height}\nPeso: {self.get_weight}\nVida: {self.get_life}\nNível: {self.get_level}"
   
+  class Hero(Character):
+    """ Hero class """
+    def __init__(self, name, age, height, weight, life, level, special_ability) -> None:
+      super().__init__(name, age, height, weight, life, level)
+      self._special_ability = special_ability
+
+    def get_special_ability(self):
+      return self._special_ability
+
+    def show_details(self):
+      return super().show_details() + f"\nHabilidade Especial: {self.get_special_ability}\n"
 
