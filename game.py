@@ -39,7 +39,7 @@ class Character:
 
   def attack(self, target):
     """ Attack method """
-    damage = random.randint(self.get_level() * 4, self.get_level() * 8)
+    damage = random.randint(self.get_level() * 2, self.get_level() * 6)
     target.receive_attack(damage)
     print(f"{self.get_name()} atacou o {target.get_name()} e causou {damage} de dano...")
   
@@ -58,7 +58,7 @@ class Hero(Character):
   
   def spacial_attack(self, target):
     """ Special attack method """
-    damage = random.randint(self.get_level() * 7, self.get_level() * 15)
+    damage = random.randint(self.get_level() * 6, self.get_level() * 12)
     target.receive_attack(damage)
     print(f"{self.get_name()} atacou o {target.get_name()} com a habilidade especial {self.get_special_ability()} e causou {damage} de dano!!!")
 
@@ -79,7 +79,7 @@ class Game:
   """ The game's orchestrator class """
 
   def __init__(self) -> None:
-    self.hero = Hero(name="Cavaleiro da Luz", age=30, height=1.80, weight=90, life=300, level=15, special_ability="Super Força")
+    self.hero = Hero(name="Cavaleiro da Luz", age=30, height=1.80, weight=90, life=300, level=25, special_ability="Super Força")
     self.enemy = Enemy(name="Dragão de Lava", age=300, height=250, weight=13000, life=500, level=20, enemy_type="Voador")
     
   def start(self):
