@@ -72,6 +72,28 @@ class Enemy(Character):
   
   def show_details(self):
     return super().show_details() + f"\nTipo do Inimigo: {self.get_enemy_type}\n"
+  
+class Game:
+  """ The game's orchestrator class """
+  def __init__(self) -> None:
+    self.hero = Hero(name="Cavaleiro", age=30, height=90.0, weight=1.80, life=250, level=15, special_ability="Super Força")
+    self.enemy = Enemy(name="Dragão de Lava", age=300, height=250, weight=13000, life=500, level=20, enemy_type="Voador")
+    
+
+  def create_hero(self):
+    """ Create hero method """
+    name = input("Digite o nome do herói: ")
+    age = int(input("Digite a idade do herói: "))
+    height = float(input("Digite a altura do herói: "))
+    weight = float(input("Digite o peso do herói: "))
+    life = int(input("Digite a vida do herói: "))
+    level = int(input("Digite o nível do herói: "))
+    special_ability = input("Digite a habilidade especial do herói: ")
+    self._hero = Hero(name, age, height, weight, life, level, special_ability)
+
+  def create_enemy(self):
+    """ Create enemy method """
+    name = input("Digite o nome do inimigo: ")
     
   
 
