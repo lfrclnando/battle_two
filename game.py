@@ -28,7 +28,7 @@ class Character:
     return self._level
   
   def show_details(self):
-   return f"Nome: {self.get_name}\nIdade: {self.get_age}\nAltura: {self.get_height}\nPeso: {self.get_weight}\nVida: {self.get_life}\nNível: {self.get_level}"
+    return f"Nome: {self.get_name}\nIdade: {self.get_age}\nAltura: {self.get_height}\nPeso: {self.get_weight}\nVida: {self.get_life}\nNível: {self.get_level}"
   
   def receive_attack(self, damage):
     """ Receive attack method """
@@ -39,11 +39,11 @@ class Character:
     # else:
     #   print(f"{self.get_name()} sofreu {damage} de dano, restam {self.get_life()} de vida")
 
-    def attack(self, target):
-      """ Attack method """
-      damage = random.randint(self.get_level() * 4, self.get_level() * 8)
-      target.receive_attack(damage)
-      print(f"{self.get_name()} atacou o {target.get_name()} e causou {damage} de dano...")
+  def attack(self, target):
+    """ Attack method """
+    damage = random.randint(self.get_level() * 4, self.get_level() * 8)
+    target.receive_attack(damage)
+    print(f"{self.get_name()} atacou o {target.get_name()} e causou {damage} de dano...")
   
 class Hero(Character):
   """ Hero class """
@@ -79,22 +79,27 @@ class Game:
     self.hero = Hero(name="Cavaleiro", age=30, height=90.0, weight=1.80, life=250, level=15, special_ability="Super Força")
     self.enemy = Enemy(name="Dragão de Lava", age=300, height=250, weight=13000, life=500, level=20, enemy_type="Voador")
     
+  def start(self):
+    """ Method for managing the battle in turns """
+    print("BEM-VINDO(A) A BATALHA DOS DOIS!!!")
+    while self.hero.get_life() > 0 and self.enemy.get_life() > 0:
+      print("Detalhes dos Personagens:")
+      print(self.hero.show_details())
+      print(self.enemy.show_details())
 
-  def create_hero(self):
-    """ Create hero method """
-    name = input("Digite o nome do herói: ")
-    age = int(input("Digite a idade do herói: "))
-    height = float(input("Digite a altura do herói: "))
-    weight = float(input("Digite o peso do herói: "))
-    life = int(input("Digite a vida do herói: "))
-    level = int(input("Digite o nível do herói: "))
-    special_ability = input("Digite a habilidade especial do herói: ")
-    self._hero = Hero(name, age, height, weight, life, level, special_ability)
+      input("\nPressione Enter para iniciar a batalha...")
+      choose = input("Escolha (1 - Atacar ou 2 - Ataque Especial): ")
+      if choose == "1":
+        self.hero.attack(self.enemy)
+      elif choose == "2":
+        self.hero.spacial_attack(self.enemy)
+      else:
+        print("Escolha inválida. Tente novamente...")
+      
+      if self.enemy.get_life() > 0:
+        self.enemy.attack(self.hero)
 
-  def create_enemy(self):
-    """ Create enemy method """
-    name = input("Digite o nome do inimigo: ")
-    
-  
-
-
+    if self.hero.get_life() > 0:
+      print(f"\n{self.hero.get_name()} venceu a batalha!!!🎉 Parabéns🎆🎆")
+    else:
+      print(f"\n{self.enemy.get_name()} venceu a batalha!!! E você Perdeu 😿")
